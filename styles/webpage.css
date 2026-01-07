@@ -1,0 +1,157 @@
+body {
+  background-color: #1C1C1C;
+  margin: 0px 0px 0px 0px;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  cursor: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.page{
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+
+.grids{
+  display: grid;
+  height: 680px;
+  width: 100%;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;  
+}
+
+.illustration-container{
+  background-color: red;
+  grid-row: 1/3;
+  grid-column: 1/3;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  margin: 10px 5px 5px 10px;
+}
+
+.illustration{
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  
+  /* Optional: centers the focus of the image */
+  object-position: center;
+  -webkit-user-drag: none;
+}
+
+.lottie-anim-logo-container{
+  background: linear-gradient(
+    to bottom,
+    rgb(246, 211, 142) 100%,     /* Color 1, 100% opacity */
+    rgba(251, 220, 240, 0.6) 100% /* Color 2, 20% opacity */
+  );
+  grid-row: 1/2;
+  grid-column: 3/5;
+  border-radius: 15px;
+  margin: 10px 10px 5px 5px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.lottie-iframe {
+  /* Increase these values to zoom in (e.g., 200% = 2x zoom) */
+  width: 100%;
+  transform: scale(2.5);
+  position: center;
+  border: none;
+  pointer-events: none; 
+}
+
+.github{
+  background: linear-gradient(
+    to bottom,
+    #D2FC3C 0%,
+    #F3F6D5 100%
+
+  );
+  margin: 5px 5px 10px 5px;
+  grid-row: 2/4;
+  grid-column: 3/4;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.linkedin{
+  background-color: #3894FF;
+  margin: 5px 10px 10px 5px;
+  grid-row: 2/3;
+  grid-column: 4/5;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.liimg{
+  position: center;
+  width: 70%;
+}
+
+.github-grid-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* keeps it non-interactive */
+
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px
+    );
+
+  background-size: 32px 32px; /* size of each square */
+}
+
+
+.git-logo{
+  width: 25%;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+}
+
+.git-qr{
+  position: absolute;
+  width: 70%;
+  top: 35%;
+  left: 12.5%;
+}
+
+
+
+
+.brandlogo{
+  background-color: #ff4e86;
+  margin: 5px 10px 10px 5px;
+  grid-row: 3/4;
+  grid-column: 4/5;
+  border-radius: 15px;
+
+  display: flex;          
+  align-items: center;    
+  justify-content: center;
+  overflow: hidden;
+}
+
+

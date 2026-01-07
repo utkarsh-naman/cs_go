@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chopsticks Game</title>
+    <style>
+        :root {
+            --bg-color: #8bc34a;
+            --hand-bg: #fce4ec; /* Skin-ish tone card */
+            --highlight: #ffeb3b;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+        }
+
+        #status-bar {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            min-width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .game-area {
+            display: flex;
+            flex-direction: column;
+            gap: 40px; /* Space between bot and player */
+        }
+
+        .row {
+            display: flex;
+            gap: 40px; /* Space between hands */
+            justify-content: center;
+            position: relative;
+        }
+
+        .label {
+            position: absolute;
+            top: -25px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hand {
+            width: 100px;
+            height: 120px;
+            background-color: var(--hand-bg);
+            border: 4px solid #fff;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+            user-select: none;
+        }
+
+        /* Dead hand styling */
+        .hand[data-fingers="0"] {
+            opacity: 0.5;
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Selected hand styling */
+        .hand.selected {
+            background-color: var(--highlight);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border-color: #f57f17;
+        }
+
+        /* Animation for getting hit */
+        .hand.hit {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Chopsticks</h1>
+    <div id="status-bar">Player's Turn</div>
+
+    <div class="game-area">
+        <div class="row" id="bot-row">
+            <div class="label">Bot</div>
+            <div class="hand" id="bot-0" data-owner="bot" data-index="0" data-fingers="1">☝️</div>
+            <div class="hand" id="bot-1" data-owner="bot" data-index="1" data-fingers="1">☝️</div>
+        </div>
+
+        <div class="row" id="player-row">
+            <div class="label">Player</div>
+            <div class="hand" id="player-0" data-owner="player" data-index="0" data-fingers="1" onclick="handleHandClick('player', 0)">☝️</div>
+            <div class="hand" id="player-1" data-owner="player" data-index="1" data-fingers="1" onclick="handleHandClick('player', 1)">☝️</div>
+        </div>
+    </div>
+
+    <script>
+        // Game State
+        const gameState = {
+            bot: [1, 1],
+            player: [1, 1],
+            turn: 'player', // 'player' or 'bot'
+            selectedHandIndex: null, // Index of the hand the player chose to attack with
+            gameOver: false
+        };
+
+        // Emoji mapping for finger counts
+        const fingerIcons = ['✊', '☝️', '✌️', '🤟', '🖖'];
+
+        // DOM Elements
+        const statusDiv = document.getElementById('status-bar');
+        const botHands = [document.getElementById('bot-0'), document.getElementById('bot-1')];
+        const playerHands = [document.getElementById('player-0'), document.getElementById('player-1')];
+
+        // --- CORE GAME LOGIC ---
+
+        function updateUI() {
+            // Update visual numbers/icons
+            [0, 1].forEach(i => {
+                // Update Bot UI
+                botHands[i].innerText = fingerIcons[gameState.bot[i]] || gameState.bot[i];
+                botHands[i].dataset.fingers = gameState.bot[i];
+                
+                // Update Player UI
+                playerHands[i].innerText = fingerIcons[gameState.player[i]] || gameState.player[i];
+                playerHands[i].dataset.fingers = gameState.player[i];
+
+                // Remove selection visual if turn changed or invalid
+                playerHands[i].classList.remove('selected');
+            });
+
+            // Re-apply selection visual if applicable
+            if (gameState.turn === 'player' && gameState.selectedHandIndex !== null) {
+                playerHands[gameState.selectedHandIndex].classList.add('selected');
+            }
+
+            // Update status text
+            if (gameState.gameOver) {
+                const winner = gameState.player[0] === 0 && gameState.player[1] === 0 ? "Bot" : "Player";
+                statusDiv.innerText = `Game Over! ${winner} Wins!`;
+                statusDiv.style.backgroundColor = winner === "Player" ? "#4caf50" : "#f44336";
+                statusDiv.style.color = "white";
+            } else {
+                statusDiv.innerText = gameState.turn === 'player' ? "Your Turn" : "Bot is thinking...";
+            }
+        }
+
+        // Handle Player Interactions
+        function handleHandClick(owner, index) {
+            if (gameState.gameOver || gameState.turn !== 'player') return;
+
+            // Logic 1: Player selects their own hand to attack with
+            if (owner === 'player') {
+                if (gameState.player[index] === 0) return; // Cannot select dead hand
+                gameState.selectedHandIndex = index;
+                updateUI();
+            }
+        }
+
+        // Add listeners to Bot hands (Targets)
+        botHands.forEach((hand, index) => {
+            hand.addEventListener('click', () => {
+                if (gameState.gameOver || gameState.turn !== 'player') return;
+                
+                // Logic 2: Player attacks bot hand
+                if (gameState.selectedHandIndex !== null) {
+                    if (gameState.bot[index] === 0) return; // Cannot attack dead hand
+                    
+                    performMove('player', gameState.selectedHandIndex, index);
+                }
+            });
+        });
+
+        function performMove(attacker, handIndex, targetIndex) {
+            const attackerArr = attacker === 'player' ? gameState.player : gameState.bot;
+            const defenderArr = attacker === 'player' ? gameState.bot : gameState.player;
+            const defenderUI = attacker === 'player' ? botHands : playerHands;
+
+            // The Math
+            let val = attackerArr[handIndex] + defenderArr[targetIndex];
+            
+            // Standard Chopsticks Rules: if >= 5, hand becomes 0 (dead)
+            if (val >= 5) val = 0;
+
+            defenderArr[targetIndex] = val;
+
+            // Visual Effect
+            defenderUI[targetIndex].classList.add('hit');
+            setTimeout(() => defenderUI[targetIndex].classList.remove('hit'), 500);
+
+            // Check Win Condition
+            if (checkWin()) {
+                gameState.gameOver = true;
+                updateUI();
+                return;
+            }
+
+            // Switch Turn
+            gameState.turn = attacker === 'player' ? 'bot' : 'player';
+            gameState.selectedHandIndex = null;
+            updateUI();
+
+            // If it's now Bot's turn, trigger bot
+            if (gameState.turn === 'bot') {
+                setTimeout(botTurn, 1000); // 1 sec delay for realism
+            }
+        }
+
+        function checkWin() {
+            const playerDead = gameState.player[0] === 0 && gameState.player[1] === 0;
+            const botDead = gameState.bot[0] === 0 && gameState.bot[1] === 0;
+            return playerDead || botDead;
+        }
+
+        // --- BOT SECTION ---
+
+        function botTurn() {
+            // This is where we call your external function later.
+            // For now, I will use a simple randomizer.
+            
+            const move = getBotMove(gameState); 
+            
+            // Execute the move returned by the bot logic
+            performMove('bot', move.sourceHandIdx, move.targetHandIdx);
+        }
+
+        /* =================================================================
+           PLACEHOLDER: REPLACE THIS FUNCTION WITH YOUR ACTUAL BOT LOGIC 
+           =================================================================
+           Expected return: { sourceHandIdx: 0 or 1, targetHandIdx: 0 or 1 }
+        */
+        function getBotMove(currentGameState) {
+            // 1. Identify valid hands Bot can use (has fingers > 0)
+            let validSources = [];
+            if (currentGameState.bot[0] > 0) validSources.push(0);
+            if (currentGameState.bot[1] > 0) validSources.push(1);
+
+            // 2. Identify valid targets (Player hands > 0)
+            let validTargets = [];
+            if (currentGameState.player[0] > 0) validTargets.push(0);
+            if (currentGameState.player[1] > 0) validTargets.push(1);
+
+            // 3. Simple AI: Randomly pick one
+            const randomSource = validSources[Math.floor(Math.random() * validSources.length)];
+            const randomTarget = validTargets[Math.floor(Math.random() * validTargets.length)];
+
+            console.log(`Bot attacking with hand ${randomSource} to target ${randomTarget}`);
+
+            return {
+                sourceHandIdx: randomSource,
+                targetHandIdx: randomTarget
+            };
+        }
+
+        // Initial Render
+        updateUI();
+
+    </script>
+</body>
+</html>

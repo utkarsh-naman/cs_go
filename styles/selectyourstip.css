@@ -1,0 +1,17 @@
+.selectyoursfirst{
+  width: fit-content;
+  height: fit-content;
+  background-color: #FEB05D;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  padding: 10px 30px 10px 30px;
+  visibility: visible;
+  position: fixed;
+  pointer-events: none;
+  z-index: 999999999;
+  transition: opacity 0.2s ease;
+}
+
+.selectyoursfirst.hiddensyf {
+  opacity: 0;
+}

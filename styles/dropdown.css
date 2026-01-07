@@ -1,0 +1,119 @@
+:root {
+    /* Theme colors matching your previous project */
+    --primary: #D2FF72;
+    --secondary: #FFFFFF;
+    --dark: #181C14;
+    --hover: #CBF3BB;
+}
+
+
+/* Container for positioning */
+.dropdown-container {
+    position: relative;
+    width: 200px;
+    left: 46%;
+    transform: translateX(-50%);
+    font-family: 'Arial Black', sans-serif;
+}
+
+/* The main button (Trigger) */
+.dropdown-btn {
+    width: 100%;
+    padding: 15px 20px;
+    font-family: inherit;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    background-color: var(--primary);
+    color: var(--dark);
+    border: 2px solid var(--dark);
+    
+    /* The "Pop" Shadow Effect */
+    box-shadow: 6px 6px 0px var(--dark);
+    
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+/* Hover Effect */
+.dropdown-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px var(--dark);
+}
+
+/* Active/Open State */
+.dropdown-container.open .dropdown-btn {
+    background-color: var(--secondary);
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--dark);
+}
+
+/* The Arrow Icon */
+.arrow {
+    width: 0; 
+    height: 0; 
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--dark);
+    transition: transform 0.3s ease;
+}
+
+.dropdown-container.open .arrow {
+    transform: rotate(180deg);
+}
+
+/* The Menu Options */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin-top: 10px; /* Gap between button and menu */
+    
+    background-color: var(--secondary);
+    border: 2px solid var(--dark);
+    box-shadow: 6px 6px 0px var(--dark);
+    
+    list-style: none;
+    padding: 0;
+    
+    /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reveal Menu */
+.dropdown-container.open .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Menu Items */
+.dropdown-item {
+    padding: 15px 20px;
+    transition: background 0.1s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown-item:hover {
+    background-color: var(--hover);
+}
+
+/* Selected State Indicator */
+.dropdown-item.selected {
+    background-color: var(--primary);
+    font-weight: bold;
+}
+
+/* Icons for options (Visual flair) */
+.icon {
+    font-size: 1.2rem;
+}

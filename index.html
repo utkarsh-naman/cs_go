@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/cursor.css">
+    <link rel="stylesheet" href="styles/webpage.css">
+    <link rel="stylesheet" href="styles/brandlogo.css">
+    <link rel="stylesheet" href="styles/gamearea.css">
+    <link rel="stylesheet" href="styles/dropdown.css">
+    <link rel="stylesheet" href="styles/start_gamebtn.css">
+    <link rel="stylesheet" href="styles/playbutton.css">
+    <link rel="stylesheet" href="styles/selectyourstip.css">
+    <title>Chopsticks</title>
+</head>
+
+
+<body>
+  <div id="cursor-wrapper">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+    
+  
+  <div id="page-id" class="page">
+
+    <div class="grids">
+      <!-- the creation of adam -->
+      <div class="card illustration-container">
+        <img class="illustration" src="res/images/creation-of-adam-cs-edition.png" alt="creation-of-adam-cs-edition">
+      </div>
+
+
+      <!-- the lottie animation -->
+      <div id="lottie-anim-logo-container" class="lottie-anim-logo-container">
+        <iframe class="lottie-iframe" src="https://lottie.host/embed/db080173-f49b-4aa3-b329-4e3627112c2b/7C6bOVZlEd.lottie"></iframe>
+      </div>
+
+      <!-- the github button -->
+      <div id="openGit" class="github">
+        <div class="github-grid-overlay">
+          <img class="git-logo" src="res/images/logo/github-142-svgrepo-com.svg" alt="github-logo">
+        <img class="git-qr" src="res/images/logo/bing_generated_qrcode.svg" alt="github-qr">
+        </div>
+      </div>
+
+
+      <!-- the linkedin -->
+      <div id="openLi" class="linkedin">
+        <img class="liimg" src="res/images/logo/linkedin-logo-svgrepo-com.svg" alt="linkedin">
+      </div>
+
+
+      <!-- logo area -->
+       <div class="brandlogo">
+        <div id="logo">
+          <img src="res/images/logo/un yellow-2-01.svg" draggable="false" />
+          <img src="res/images/logo/un yellow-01.svg" draggable="false" />
+          <img src="res/images/logo/un blue-3-01.svg" draggable="false" />
+          <img src="res/images/logo/un blue correct-01.svg" draggable="false" />
+          <img src="res/images/logo/un white-01.svg" draggable="false" />
+        </div>
+       </div>
+
+
+       <!-- play button -->
+       <div class="playbuttonarea">
+        <button class="grid-btn" id="playBtn">
+          <span class="btn-text">Play</span>
+        </button>
+       </div>
+    </div>
+
+    <div id="gamecontentwindow"class="gamecontent">
+      
+      <div id="playground"class="game-area blurred">
+        
+        <!-- game status area (right side) -->
+        <div class="gamestatarea">
+          <h1> Chopsticks Game Bot</h1>
+          
+          <!-- dropdown menu -->
+          <div class="dropdown-container" id="playerSelect">
+            <div class="dropdown-btn" id="dropdownBtn">
+                <span id="selectedText">Who plays first?</span>
+                <div class="arrow"></div>
+            </div>
+
+            <ul class="dropdown-menu">
+              <li class="dropdown-item" data-value="bot">
+                  <span class="icon">/ᐠ - ˕ -マ </span> Bot
+              </li>
+              <li class="dropdown-item" data-value="you">
+                  <span class="icon">(•◡•)</span> You
+              </li>
+            </ul>
+          </div>
+
+          <!-- start button -->
+          <button id="startGameBtn" class="start-btn">
+            Start
+          </button>
+
+        </div>
+
+        <!-- background for game interaction area (left side) -->
+        <div class="game-regionbg"></div>
+
+        <!-- game interaction area (left side) -->
+        <div id="leftgameregion" class="game-region">
+          
+          <button disabled id="botr" class="scorebox botr">?</button>
+          <button disabled id="botl" class="scorebox botl">?</button>
+
+          <div id="turntext" class="turntext">Turn: ?</div>
+          <div id="distributionButton" class="distribute_button">D</div>
+          
+          <div id="distributionPanel"class="distributionPanel"></div>
+          
+          <button disabled id="pl" class="scorebox playerl">?</button>
+          <button disabled id="pr"class="scorebox playerr">?</button>
+        </div>
+
+        
+
+        
+      </div>
+      
+      <div id="seal_cont_id" class="seal_container_blurr"><img class="seal_svg" src="res/mascots/seal full.svg" alt="Sealvestor_StandAlone"></div>
+    
+    </div>
+    
+
+  </div>
+  <div class="selectyoursfirst" id="hoverTipsDiv">Select Your Hand First !</div>
+</body>
+<script src="scripts/trail/cursor.js"></script>
+<script src="scripts/page/brandlogo/brand-logo-anim.js"></script>
+<script src="scripts/page/playbtn/playbutton.js"></script>
+<script src="scripts/game/initEngine.js"></script>
+<script src="scripts/game/dist_button_to_panel.js"></script>
+<script src="scripts/game/handlegame.js"></script>
+<script src="scripts/game/dropdown.js"></script>
+<script src="scripts/game/start_game_button.js"></script>
+<script src="scripts/game/selectyourstip.js"></script>
+<script>
+  document.getElementById("openLi").addEventListener("click", () => {
+    window.open("https://www.linkedin.com/in/utkarsh-naman/", "_blank", "noopener,noreferrer");
+  });
+
+  document.getElementById("openGit").addEventListener("click", () => {
+    window.open("https://github.com/utkarsh-naman", "_blank", "noopener,noreferrer");
+  });
+</script>
+</html>

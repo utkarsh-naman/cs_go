@@ -1,0 +1,13 @@
+#logo {
+  position: relative;
+  width: 70%;            /* Reduced from 100% to keep it centered with room to move */
+  aspect-ratio: 1000 / 556;
+  user-select: none;
+}
+
+#logo > img {
+  width: 100%;
+  position: absolute;
+  top: -35%;                /* Ensures images start at the top of the #logo container */
+  left: 0;               /* Ensures images start at the left of the #logo container */
+}

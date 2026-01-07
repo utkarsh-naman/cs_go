@@ -1,0 +1,51 @@
+
+.start-btn {
+    /* Layout & Size */
+    margin-top: 20px; /* Space between dropdown and button */
+    padding: 15px 40px; /* Wide clickable area */
+    width: 200px; /* Match dropdown width if desired */
+    
+    /* Typography */
+    font-family: inherit; /* Uses your poxel or global font */
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    /* Colors - Hot Pink Theme */
+    background-color: #F72C5B; 
+    color: #181C14;
+    border: 2px solid #181C14;
+    
+    /* The "Pop" Shadow Effect */
+    box-shadow: 6px 6px 0px #181C14;
+    
+    /* Interactive Properties */
+    cursor: pointer;
+    position: relative;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); 
+    visibility: hidden;
+}
+
+/* Hover State - Float Up */
+.start-btn:hover {
+    background-color: #fc4d76; /* Slightly lighter pink */
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #181C14;
+}
+
+/* Active/Click State - Press Down */
+.start-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #181C14;
+    background-color: #FF90E8;
+}
+
+/* Disabled State (Optional, for when game is running) */
+.start-btn:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    box-shadow: 2px 2px 0px #181C14;
+    transform: translate(2px, 2px);
+    cursor: not-allowed;
+}

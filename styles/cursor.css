@@ -1,0 +1,35 @@
+#cursor-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99999999;
+  
+  /* THIS is the key fix. It blends the entire 'shape' of the trail once. */
+  mix-blend-mode: difference;
+}
+
+
+.circle {
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  background-color: white;
+
+  position: absolute; 
+  border: none;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999999; /* so that it stays on top of all other elements */
+  /* mix-blend-mode: difference; */
+  transition: opacity 0.3s ease; /* Smooth fade in/out */
+  opacity: 1; /* This handles the color inversion */
+  
+}
+
+.circle.hidden {
+  opacity: 0;
+}

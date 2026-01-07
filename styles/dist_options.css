@@ -1,0 +1,36 @@
+.optionbox{
+    height: 100%;
+    width: fit-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    background-color: red;
+}
+
+.option1handdiv{
+    grid-row: 1/2;
+    grid-column: 1/2;
+    margin: 10% 5% 10% 10%;
+    background-color: cornflowerblue;
+    color: aliceblue;
+    font-family: poxel;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.option2handdiv{
+    grid-row: 1/2;
+    grid-column: 2/3;
+    margin: 10% 10% 10% 5%;
+    background-color: cornflowerblue;
+    color: aliceblue;
+    font-family: poxel;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
