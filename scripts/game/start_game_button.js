@@ -16,6 +16,8 @@ startBtn.addEventListener('click', () => {
         gamerun("11111");
     }
     else{
+        document.getElementById("game_over_id").style.zIndex=-1;
+        document.getElementById("game_over_text").style.zIndex=-1;
         gamerun("11110");
     }
 });
