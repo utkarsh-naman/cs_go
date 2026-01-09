@@ -49,7 +49,10 @@ window.addEventListener("mousemove", function(e) {
         isHoveringDisabledBtn = true;
         if (state_arr[4] === '0'){
           if(move_selected.length == 0){
-            if (btn === ol_sq || btn === or_sq){
+            if((pl_sq.innerText === '0' && pr_sq.innerText === '0') || (ol_sq.innerText === '0' && or_sq.innerText === '0')){
+              select_tips_div.innerText = "Restart the game !";
+            }
+            else if (btn === ol_sq || btn === or_sq){
               select_tips_div.innerText = "Select Yours First !";
             }
             else if ((btn === pl_sq || btn === pr_sq) && btn.innerText === '0'){
@@ -83,6 +86,12 @@ window.addEventListener("mousemove", function(e) {
             else {
               // console.log("trying to print 'tap to attack' ");
               select_tips_div.innerText = "Tap to attack !";
+            }
+          }
+
+          else if (move_selected.length == 2){
+            if((pl_sq.innerText === '0' && pr_sq.innerText === '0') || (ol_sq.innerText === '0' && or_sq.innerText === '0')){
+              select_tips_div.innerText = "Restart the game !";
             }
           }
         } 

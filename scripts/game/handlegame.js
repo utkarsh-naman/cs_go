@@ -204,48 +204,83 @@ function bot_plays_move(state_str){
     console.log(`engine move: ${move}`);
     if (move === "ll"){
         next_state_by_bot = ll(state_str);
-        ol_square.classList.add("selectedcss");
-        sleep(0.5);
-        pl_square.classList.add("selectedcss");
+        setTimeout(()=>{
+            ol_square.classList.add("selectedcss");
+            setTimeout(()=>{
+                pl_square.classList.add("selectedcss");
+                setTimeout(()=>{
+                    updateUI(next_state_by_bot);
+                }, 500);
+            }, 400);
+        }, 600);
         // console.log(`bot played${next_state_by_bot}`);
-        updateUI(next_state_by_bot);
+        
     }
     else if (move === "lr"){
         next_state_by_bot = lr(state_str);
-        ol_square.classList.add("selectedcss");
-        sleep(0.5);
-        pr_square.classList.add("selectedcss");
-        // console.log(`bot played${next_state_by_bot}`);
-        updateUI(next_state_by_bot);
+        setTimeout(()=>{
+            ol_square.classList.add("selectedcss");
+            setTimeout(()=>{    
+                pr_square.classList.add("selectedcss");
+                setTimeout(()=>{
+                    updateUI(next_state_by_bot);
+                }, 500);
+            }, 400);
+        }, 600);
+        
     }
     else if (move === "rl"){
         next_state_by_bot = rl(state_str);
-        or_square.classList.add("selectedcss");
-        sleep(0.5);
-        pl_square.classList.add("selectedcss");
-        // console.log(`bot played${next_state_by_bot}`);
-        updateUI(next_state_by_bot);
+        setTimeout(()=>{            
+            or_square.classList.add("selectedcss");
+            setTimeout(() => {    
+                pl_square.classList.add("selectedcss");
+                setTimeout(()=>{
+                    updateUI(next_state_by_bot);
+                }, 500);
+            }, 400);
+        }, 600);
     }
     else if (move === "rr"){
         next_state_by_bot = rr(state_str);
-        or_square.classList.add("selectedcss");
-        sleep(0.5);
-        pr_square.classList.add("selectedcss");
-        // console.log(`bot played${next_state_by_bot}`);
-        updateUI(next_state_by_bot);
+        setTimeout(()=>{
+            or_square.classList.add("selectedcss");
+            setTimeout(()=>{
+                pr_square.classList.add("selectedcss");
+                setTimeout(()=>{
+                    updateUI(next_state_by_bot);
+                }, 500);
+            }, 400);
+        }, 600);
     }
 
     else if (move[0] == 's'){
         next_state_by_bot = sx(move, state_str);
-        updateUI(next_state_by_bot);
+        
+        setTimeout(() => {
+            ol_square.classList.add("selectedcss");
+            setTimeout(()=>{
+                or_square.classList.add("selectedcss");
+                setTimeout(()=>{
+                    updateUI(next_state_by_bot);
+                }, 500);
+            }, 400);
+        }, 600);
     }
 
-    sq_divs.forEach(sqs =>{
-        sqs.classList.remove("selectedcss");
-    });
+    
 }
 
 function updateUI(state_str){
+    if (move_selected.length == 0){
+        setTimeout(()=>{
+            sq_divs.forEach(sqs=>{
+                sqs.classList.remove("selectedcss");
+            });
+        }, 500);
+    }
+
+
     if (state_str[4] === '0'){
         console.log(`move by bot: ${state_str}`);
     }
@@ -255,12 +290,15 @@ function updateUI(state_str){
     }
 
     if (state_str[2] == 0 && state_str[3] == 0){
+        hover_tips_div.innerText = "Restart the game !";
         games_over_bruh(1);
     }
     else if(state_str[0] == 0 && state_str[1] == 0){
+        hover_tips_div.innerText = "Restart the game !";
         games_over_bruh(0);
     }
 
+    
     state_divs[0].innerText = state_str[0];
     state_divs[1].innerText = state_str[1];
     state_divs[2].innerText = state_str[2];
@@ -323,7 +361,7 @@ function updateUI(state_str){
         pr_square.style.pointerEvents = "all";
         console.log(`enabled the buttons for distribution`);
     }
-
+    
     else if (state_arr[4] === '0' && move_selected.length == 2){
         if(move_selected[0] === pl_square && move_selected[1] === ol_square){
             console.log(`player chose ll: ${move_selected[0].id}, ${move_selected[1].id}`);
