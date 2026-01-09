@@ -21,7 +21,7 @@ sq_divs.forEach(square => {
 });
 
 function onSquareClick(square){
-    console.log(`chance while selecting: ${state_arr[4]}`);
+    // console.log(`chance while selecting: ${state_arr[4]}`);
     if (state_arr[4] === '1') return; // bot chance so no need
     if (move_selected.includes(square)){
         move_selected = move_selected.filter(s => s !== square);
@@ -63,7 +63,7 @@ function lr(state_str){
 }
 
 function rl(state_str){
-    console.log(`rl recieved: ${state_str}`);
+    // console.log(`rl recieved: ${state_str}`);
     if (state_str[4] == '0'){
         let new_state = state_str[0]+state_str[1]+String( ( parseInt(state_str[2])+parseInt(state_str[1]) )%5 )+state_str[3]+String(1);
         return new_state;
@@ -85,9 +85,9 @@ function rr(state_str){
 
 // for bot move where bot distributes the sum 
 function sx(move, state_str){
-    console.log(`sx got: ${state_str}`);
+    // console.log(`sx got: ${state_str}`);
     let next_state = state_str[0]+state_str[1]+move[1]+ String( ( parseInt(state_str[2])+parseInt(state_str[3]) - parseInt(move[1]) )%5 )+String( (parseInt(state_str[4]))^1 );
-    console.log(`sx returns by bot: ${next_state}`);
+    // console.log(`sx returns by bot: ${next_state}`);
     return next_state; 
 }
 
@@ -282,11 +282,11 @@ function updateUI(state_str){
 
 
     if (state_str[4] === '0'){
-        console.log(`move by bot: ${state_str}`);
+        // console.log(`move by bot: ${state_str}`);
     }
 
     else{
-        console.log(`move by player: ${state_str}`);
+        // console.log(`move by player: ${state_str}`);
     }
 
     if (state_str[2] == 0 && state_str[3] == 0){
@@ -320,7 +320,7 @@ function updateUI(state_str){
                 pr_square.disabled = false;
                 pl_square.style.pointerEvents = "all";
                 pr_square.style.pointerEvents = "all";
-                console.log(`enabled inside conflict the buttons for distribution`);
+                // console.log(`enabled inside conflict the buttons for distribution`);
             }
         }
         else{
@@ -359,27 +359,27 @@ function updateUI(state_str){
         pr_square.disabled = false;
         pl_square.style.pointerEvents = "all";
         pr_square.style.pointerEvents = "all";
-        console.log(`enabled the buttons for distribution`);
+        // console.log(`enabled the buttons for distribution`);
     }
     
     else if (state_arr[4] === '0' && move_selected.length == 2){
         if(move_selected[0] === pl_square && move_selected[1] === ol_square){
-            console.log(`player chose ll: ${move_selected[0].id}, ${move_selected[1].id}`);
+            // console.log(`player chose ll: ${move_selected[0].id}, ${move_selected[1].id}`);
             updateUI(ll(state_str));
         }
         
         else if (move_selected[0] === pl_square && move_selected[1] === or_square){
-            console.log(`player chose lr: ${move_selected[0].id}, ${move_selected[1].id}`);
+            // console.log(`player chose lr: ${move_selected[0].id}, ${move_selected[1].id}`);
             updateUI(lr(state_str));
         }
 
         else if (move_selected[0] === pr_square && move_selected[1] === ol_square){
-            console.log(`player chose rl: ${move_selected[0].id}, ${move_selected[1].id}`);
+            // console.log(`player chose rl: ${move_selected[0].id}, ${move_selected[1].id}`);
             updateUI(rl(state_str));
         }
 
         else if (move_selected[0] === pr_square && move_selected[1] === or_square){
-            console.log(`player chose rr: ${move_selected[0].id}, ${move_selected[1].id}`);
+            // console.log(`player chose rr: ${move_selected[0].id}, ${move_selected[1].id}`);
             updateUI(rr(state_str));
         }
 
