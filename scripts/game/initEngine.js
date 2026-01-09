@@ -4,7 +4,7 @@ let engineInstance = null;
 const GITHUB_USERNAME = "utkarsh-naman";
 const REPO_NAME = "unc";
 const BRANCH = "main";
-const FOLDER = "cdn"; // Matches your folder name: 'WASM'
+const FOLDER = "cdn2"; // Matches your folder name: 'WASM'
 
 // This constructs the CDN URL:
 // https://cdn.jsdelivr.net/gh/utkarsh-naman/cs_wasm@main/WASM/
