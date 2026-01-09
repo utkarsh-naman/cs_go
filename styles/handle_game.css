@@ -1,0 +1,10 @@
+.zerohandcss{
+  filter: grayscale(100%);
+  user-select: none;
+  pointer-events: none;
+}
+
+
+.selectedcss{
+  border: 5px solid greenyellow;
+}

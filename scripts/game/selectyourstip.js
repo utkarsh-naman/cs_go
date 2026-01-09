@@ -2,6 +2,7 @@ const select_tips_div = document.getElementById('hoverTipsDiv');
 const blurred_div = document.getElementById('playground');
 const turntextdiv = document.getElementById('turntext');
 const lgr = document.getElementById('leftgameregion');
+
 select_tips_div.classList.add("hiddensyf");
 
 let tipX = 0;
@@ -27,7 +28,7 @@ window.addEventListener("mousemove", function(e) {
 
   // Check if mouse is physically inside any disabled button
   gameButtons.forEach(btn => {
-    if (btn && btn.disabled) {
+    if (btn) {
       // Get the position/size of the button
       // console.log(turntextdiv.innerText);
       if (turntextdiv.innerText == "Turn: ?"){
@@ -35,6 +36,8 @@ window.addEventListener("mousemove", function(e) {
       }
 
       const rect = btn.getBoundingClientRect();
+
+      
 
       // Check if mouse coordinates are within the button's box
       if (
@@ -44,6 +47,46 @@ window.addEventListener("mousemove", function(e) {
         e.clientY <= rect.bottom
       ) {
         isHoveringDisabledBtn = true;
+        if (state_arr[4] === '0'){
+          if(move_selected.length == 0){
+            if (btn === ol_sq || btn === or_sq){
+              select_tips_div.innerText = "Select Yours First !";
+            }
+            else if ((btn === pl_sq || btn === pr_sq) && btn.innerText === '0'){
+              // btn.disabled = true;
+              select_tips_div.innerText = "Cannot attack with 0 fingers !";}
+
+            else if (btn === pl_sq && pl_sq.innerText !== '0'){
+              select_tips_div.innerText = "Tap to select left hand !";}
+
+            else if (btn === pr_sq && pr_sq.innerText !== '0'){
+              select_tips_div.innerText = "Tap to select right hand !";}
+          }
+
+          else if(move_selected.length == 1){
+            if (move_selected.includes(btn)){
+              select_tips_div.innerText = "Tap to unselect hand !";
+            }
+
+            else if((btn === ol_sq || btn === or_sq) && btn.innerText === '0'){
+              select_tips_div.innerText = "Cannot attack on 0 fingers !";
+            }
+
+            else if ( (btn === pl_sq || btn === pr_sq) && !move_selected.includes(btn) ){
+              // if (btn.innerText === '0'){
+              //   btn.disabled = false;
+              //   console.log(`enabled: ${btn.id}`);
+              // }
+              select_tips_div.innerText = "Tap to distribute fingers !";
+            }
+
+            else {
+              // console.log("trying to print 'tap to attack' ");
+              select_tips_div.innerText = "Tap to attack !";
+            }
+          }
+        } 
+        // console.log(`trying to print the sq name ${btn.id}`);
       }
     }
   });
