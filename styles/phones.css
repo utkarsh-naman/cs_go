@@ -141,4 +141,8 @@
     left: calc(50% - (50px/2));
     right: calc(50% - (50px/2));;
   }
+
+  .selectyoursfirst{
+    display: none;
+  }
 }
