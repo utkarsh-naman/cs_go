@@ -178,6 +178,7 @@ function renderOptions_distributionPanel(state_str){
 
             optionBox.addEventListener("click", () => {
                 // console.log(`try printing the full next div state: ${full_next_dist_state[i]}`);
+                
                 updateUI(full_next_dist_state[i]);
             });
 
@@ -272,6 +273,7 @@ function bot_plays_move(state_str){
 }
 
 function updateUI(state_str){
+    dist_panel_div.style.visibility = "hidden";
     if (move_selected.length == 0){
         setTimeout(()=>{
             sq_divs.forEach(sqs=>{

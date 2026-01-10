@@ -1,0 +1,144 @@
+
+
+@media (max-width: 768px) {
+  body {
+    cursor: default;
+    margin-top: 00px;
+  }
+
+  .page{
+  }
+  .circle{
+    visibility: hidden;
+  }
+  
+  .grids{
+    width: 100%;
+    height: 680px;
+    grid-template-rows: 2fr 4fr 1fr 0.5fr;
+    grid-template-columns: 1fr 1fr 1fr; 
+  }
+
+  .lottie-anim-logo-container{
+    grid-row: 1/2;
+    grid-column: 1/4;
+    margin: 10px 10px 5px 10px;
+  }
+
+  .lottie-iframe{
+    transform: scale(1.5);
+  }
+
+  .illustration-container{
+    grid-row: 2/3;
+    grid-column: 1/4;
+    margin: 5px 10px 5px 10px;
+  }
+
+  .illustration{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .github{
+    grid-row: 3/4;
+    grid-column: 1/2;
+    margin: 5px 5px 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .git-logo{
+    height: 80%;
+    transform: scale(2);
+    position: relative;
+    top: calc(10%);
+    left: calc(40%);
+  }
+  .git-qr{
+    display: none;
+  }
+
+  .linkedin{
+    grid-row: 3/4;
+    grid-column: 2/3;
+    margin: 5px 5px 5px 5px;
+  }
+
+  .brandlogo {
+    grid-row: 3/4;
+    grid-column: 3/4; /* Place it in the 3rd column */
+    margin: 5px 10px 5px 5px;
+    
+  }
+
+  #logo{
+
+  }
+
+  #logo > img{
+    width: 80%;
+    top: 2px;
+    left: 2px;
+  }
+
+  .playbuttonarea{
+    height: 100%;
+    grid-row: 4/5;
+    grid-column: 1/4;
+  }
+  .grid-btn{
+    padding: 0px 0px;
+    height: 70%;
+  }
+
+  .seal_svg{
+    width: 70%;
+    pointer-events: none;
+  }
+
+
+
+  .game-area{
+    position: relative;
+    margin: 20px 10px 20px 10px;
+    background-color: transparent;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .gamestatarea{
+    margin: 20px 0px 20px 0px;
+    border-radius: 15px;
+    grid-row: 2/3;
+    grid-column: 1/2;
+    background: linear-gradient(
+      to bottom,    /* Color 1, 100% opacity */
+      #FEB05D 100%
+    ) ;
+    text-align: center;
+    position: relative;
+    /* z-index: 500; */
+  }
+
+
+  .distribute_button{
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: black;
+    font-family: poxel;
+    font-size: xx-large;
+    color: aliceblue;
+    grid-row: 3/4;
+    grid-column: 4/5;
+    position: relative;
+    top: calc(50% - (50px / 2));
+    left: calc(50% - (50px/2));
+    right: calc(50% - (50px/2));;
+  }
+}
