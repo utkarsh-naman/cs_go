@@ -1,21 +1,26 @@
 .optionbox{
-    height: 100px;
-    width: max-content;
+    height: calc(100% - 6px);
+    width: 40%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
-    background-color: transparent;
-    border: 5px solid crimson;
+    background-color: #0046FF;
+    border: 3px solid aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .option1handdiv{
     grid-row: 1/2;
     grid-column: 1/2;
+    width: 45%;
     margin: 10px 5px 10px 10px;
     aspect-ratio: 1/1;
     background-color: cornflowerblue;
     color: aliceblue;
     font-family: poxel;
+    font-size: xx-large;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -26,11 +31,13 @@
 .option2handdiv{
     aspect-ratio: 1/1;
     grid-row: 1/2;
+    width: 45%;
     margin: 10px 10px 10px 5px;
     grid-column: 2/3;
     background-color: cornflowerblue;
     color: aliceblue;
     font-family: poxel;
+    font-size: xx-large;
     display: flex;
     flex-direction: column;
     justify-content: center;

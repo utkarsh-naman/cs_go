@@ -288,7 +288,10 @@ function updateUI(state_str){
     }
 
     else{
-        // console.log(`move by player: ${state_str}`);
+        ol_square.disabled = true;
+        or_square.disabled = true;
+        pl_square.disabled = true;
+        pr_square.disabled = true;
     }
 
     if (state_str[2] == 0 && state_str[3] == 0){
@@ -387,6 +390,8 @@ function updateUI(state_str){
 
         else{
             distpaneldiv.style.visibility = 'visible';
+            ol_square.disabled = true;
+            or_square.disabled = true;
         }
     }
 
