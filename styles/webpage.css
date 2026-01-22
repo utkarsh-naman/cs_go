@@ -33,6 +33,7 @@ body {
   overflow: hidden;
   display: flex;
   margin: 10px 5px 5px 10px;
+  user-select: none;
 }
 
 .illustration{
@@ -43,6 +44,8 @@ body {
   /* Optional: centers the focus of the image */
   object-position: center;
   -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
 }
 
 .lottie-anim-logo-container{
@@ -96,6 +99,7 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  user-select: none;
 }
 
 .liimg{
@@ -152,6 +156,7 @@ body {
   align-items: center;    
   justify-content: center;
   overflow: hidden;
+  user-select: none;
 }
 
 
